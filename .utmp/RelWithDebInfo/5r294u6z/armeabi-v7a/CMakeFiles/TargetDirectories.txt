@@ -1,0 +1,5 @@
+D:/Math-Quest-main/.utmp/RelWithDebInfo/5r294u6z/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/Math-Quest-main/.utmp/RelWithDebInfo/5r294u6z/armeabi-v7a/CMakeFiles/rebuild_cache.dir
+D:/Math-Quest-main/.utmp/RelWithDebInfo/5r294u6z/armeabi-v7a/FramePacing/CMakeFiles/swappywrapper.dir
+D:/Math-Quest-main/.utmp/RelWithDebInfo/5r294u6z/armeabi-v7a/FramePacing/CMakeFiles/edit_cache.dir
+D:/Math-Quest-main/.utmp/RelWithDebInfo/5r294u6z/armeabi-v7a/FramePacing/CMakeFiles/rebuild_cache.dir
