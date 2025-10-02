@@ -34,7 +34,7 @@ public class SymbolIdentifier : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         infirst = true;
-        Symbol = 'k';
+        //Symbol = 'k';
         if (weightScript != null)
         {
             weightScript.changeWeight();

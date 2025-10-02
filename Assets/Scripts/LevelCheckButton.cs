@@ -50,9 +50,9 @@ public class LevelCheckButton : MonoBehaviour
 
     public void RetryLevelFromWin()
     {
-        SceneManager.LoadScene(4);  // Reload Levels scene
-        LevelComplete.i = 0;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //LevelComplete.i = 0;
         Score.lives = 3;
-        LevelLoad.intSaver = 0;
+        //LevelLoad.intSaver = 0;
     }
 }

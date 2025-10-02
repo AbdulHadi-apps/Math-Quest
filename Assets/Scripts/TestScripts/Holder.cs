@@ -1,44 +1,44 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Holder : MonoBehaviour
 {
-    public string numName = "";
-    private GameObject initialGameobj;
+    public enum HolderType { Number, Sign }
+    public HolderType holderType; // ✅ set this in Inspector
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private GameObject currentObj;
+
+    public bool CanAccept(NewDrag dragScript)
     {
-        if (!collision.GetComponent<NewDrag>().drag)
+        if (holderType == HolderType.Sign)
         {
-            if (numName == "")
-            {
-                numName = collision.name;
-                initialGameobj = collision.gameObject;
-                Debug.Log(numName + "HolderScript");
-                NumberSounds.Instance.ButtonClickSound1();
-            }
-
-            if (numName != collision.name)
-            {
-                swap(initialGameobj);
-                numName = collision.name;
-            }
+            return (dragScript.NumberDef == '+' || dragScript.NumberDef == '-' || dragScript.NumberDef == 'x' || dragScript.NumberDef == '/');
+        }
+        else // Number Holder
+        {
+            return !(dragScript.NumberDef == '+' || dragScript.NumberDef == '-' || dragScript.NumberDef == 'x' || dragScript.NumberDef == '/');
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    public void AcceptDrop(GameObject obj, NewDrag dragScript)
     {
-        numName = "";
-        Debug.Log("Value reset");
+        // Case 1: Slot empty
+        if (currentObj == null)
+        {
+            PlaceObject(obj);
+        }
+        // Case 2: Already filled → swap
+        else if (currentObj != obj)
+        {
+            currentObj.GetComponent<NewDrag>().returnToOriginalPlace();
+            PlaceObject(obj);
+        }
     }
 
-    void swap(GameObject obj)
+    private void PlaceObject(GameObject obj)
     {
-        obj.GetComponent<NewDrag>().returnToOriginalPlace();
+        currentObj = obj;
+        obj.transform.position = transform.position;
+        Debug.Log(obj.name + " placed in Holder (" + holderType + ")");
+        NumberSounds.Instance.ButtonClickSound1();
     }
-
-
 }

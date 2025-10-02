@@ -19,9 +19,10 @@ public class GameOver : MonoBehaviour
 
     public void ButtonRestart()
     {
-        SceneManager.LoadScene(4);  // Reload Levels scene
-        LevelLoad.intSaver = 0;
-        LevelComplete.i = 0;
+        //SceneManager.LoadScene(4);  // Reload Levels scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        // LevelLoad.intSaver = 0;
+        // LevelComplete.i = 0;
         Score.lives = 3;
     }
 

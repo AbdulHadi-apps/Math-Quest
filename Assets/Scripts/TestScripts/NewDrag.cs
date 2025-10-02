@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class NewDrag : MonoBehaviour
 {
@@ -8,10 +6,11 @@ public class NewDrag : MonoBehaviour
     private float movementTime = 15f;
     private Vector3? movementDestination;
     private Vector3 initialPosition;
-    private char NumberDef;
+    public char NumberDef;
     private AudioSource buttonSound;
 
-    private bool placedInSlot = false; // ✅ Track if correctly placed
+    private bool placedInSlot = false;
+    private Holder lastHolder; // ✅ keep track of last hovered holder
 
     private void Start()
     {
@@ -23,7 +22,8 @@ public class NewDrag : MonoBehaviour
     private void OnMouseDown()
     {
         drag = true;
-        placedInSlot = false; // picking it up again → not in slot
+        placedInSlot = false;
+        lastHolder = null; // reset
         ButtonClickAudio();
     }
 
@@ -31,10 +31,16 @@ public class NewDrag : MonoBehaviour
     {
         drag = false;
 
-        // ✅ If no valid slot, return to start
-        if (!placedInSlot)
+        if (lastHolder != null && lastHolder.CanAccept(this)) // ✅ Only if type matches
         {
+            lastHolder.AcceptDrop(gameObject, this);
+            placedInSlot = true;
+        }
+        else
+        {
+            // ❌ Wrong holder or no holder → return home
             movementDestination = initialPosition;
+            placedInSlot = false;
         }
     }
 
@@ -42,8 +48,8 @@ public class NewDrag : MonoBehaviour
     {
         if (drag)
         {
-            Vector2 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-            transform.Translate(MousePos);
+            Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            transform.position = mouseWorldPos;
         }
     }
 
@@ -69,23 +75,21 @@ public class NewDrag : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (NumberDef == '+' || NumberDef == '-' || NumberDef == 'x')
+        Holder holder = other.GetComponent<Holder>();
+        if (holder != null)
         {
-            if (other.CompareTag("DropSlotSigns"))
-            {
-                movementDestination = other.transform.position;
-                placedInSlot = true; // ✅ Mark as placed
-            }
+            lastHolder = holder; // ✅ mark last hovered holder
         }
-        else
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        Holder holder = other.GetComponent<Holder>();
+        if (holder != null && holder == lastHolder)
         {
-            if (other.CompareTag("DropSlot"))
-            {
-                movementDestination = other.transform.position;
-                placedInSlot = true; // ✅ Mark as placed
-            }
+            lastHolder = null; // ✅ left the holder
         }
     }
 

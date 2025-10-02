@@ -18,6 +18,7 @@ public class Level_1 : MonoBehaviour , ILevelCheckable
     {
         levelCompleteScript = FindObjectOfType<LevelComplete>();
         won = false;
+        Score.lives = 3;
     }
     
 

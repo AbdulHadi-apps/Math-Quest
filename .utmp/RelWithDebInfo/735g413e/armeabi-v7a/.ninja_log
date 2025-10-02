@@ -1,0 +1,12 @@
+# ninja log v5
+47	210	7805038827631357	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	cb9b0a8fba931d10
+211	436	7805038829505087	D:/Hamza Games/Math-Quest/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/735g413e/obj/armeabi-v7a/libswappywrapper.so	2a1e7a71a34f0db2
+20	1323	7805038838628836	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	95c1415e8220fbaf
+25	1361	7805038839057400	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	eac625f910c39eba
+0	1430	7805038839794929	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	ec0619b79e1cdcce
+39	1479	7805038840253526	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	fad18d53ad7663a
+5	1530	7805038840815914	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	8671aaef74815fa8
+32	1574	7805038841310915	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	16e44d5c6eda9be
+14	1664	7805038842214131	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	f677c29e8426e22
+10	1701	7805038842584855	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	5fa3660830f77c26
+1701	1763	7805038843247163	D:/Hamza Games/Math-Quest/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/735g413e/obj/armeabi-v7a/libgame.so	49cd20f8e82ae04

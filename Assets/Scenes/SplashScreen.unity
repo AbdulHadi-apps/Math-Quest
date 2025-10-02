@@ -272,7 +272,7 @@ MonoBehaviour:
   Unity_ID: 
   VIDEO_PLACEMENT: 
   REWARDED_VIDEO_PLACEMENT: 
-  testMode: 1
+  testMode: 0
   rewardedName: 
 --- !u!1 &875562819
 GameObject:

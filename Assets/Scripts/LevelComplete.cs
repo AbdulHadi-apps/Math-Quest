@@ -10,6 +10,7 @@ public class LevelComplete : MonoBehaviour
     public static int i = 0;
     public ParticleSystem Celebration;
     public ParticleSystem Celebration2;
+    public AudioSource VictoryAudio;
     public AudioSource LevelCompletion;
     public AudioSource NextLevelButtonSound;
     public GameObject Fade;
@@ -17,6 +18,7 @@ public class LevelComplete : MonoBehaviour
     public GameObject nextButton;
     public GameObject WindowChanger;
     public GameObject checkButton;
+    public GameObject winPanel;
 
     void Start()
     {
@@ -33,18 +35,16 @@ public class LevelComplete : MonoBehaviour
     public void levelWon()
     {
         won = true;
-        LevelCompletion.Play();
-        Celebration.Play();
-        Celebration2.Play();
-        nextButton.SetActive(true);
-        Debug.Log("Hello");
-
-        if (i == 2 || i == 5 || i == 8)
+        if(SoundManager1.instance.isSoundOn)
         {
-            Debug.Log("Showing interstitial ad after level " + (i + 1));
-            Initialize.Instance.LoadInterstitialAd();
-            Initialize.Instance.ShowInterstitialAd();
-        }
+            LevelCompletion.Play();
+            Celebration.Play();
+            Celebration2.Play();
+            VictoryAudio.Play();
+        }    
+        nextButton.SetActive(true);
+        winPanel.SetActive(true);
+        Debug.Log("Hello");
     }
 
     private void levelChanger()
